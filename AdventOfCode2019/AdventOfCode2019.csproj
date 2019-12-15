@@ -50,6 +50,8 @@
     <Compile Include="Common\Intcode\Parameter.cs" />
     <Compile Include="Common\Intcode\ParameterMode.cs" />
     <Compile Include="Common\ISolution.cs" />
+    <Compile Include="Common\Structures\RootedForest.cs" />
+    <Compile Include="Common\Structures\RootedForestObject.cs" />
     <Compile Include="Day01\FuelRequirementCalculator.cs" />
     <Compile Include="Day01\Solution.cs" />
     <Compile Include="Day01\Tests\FuelRequirementCalculatorTests.cs" />
@@ -73,6 +75,13 @@
     <Compile Include="Day04\Tests\PasswordValidatorTests.cs" />
     <Compile Include="Day05\Solution.cs" />
     <Compile Include="Day05\Test.cs" />
+    <Compile Include="Day06\Day06InputLoader.cs" />
+    <Compile Include="Day06\Map.cs" />
+    <Compile Include="Day06\Object.cs" />
+    <Compile Include="Day06\Solution.cs" />
+    <Compile Include="Day06\Tests\Day06InputLoaderTests.cs" />
+    <Compile Include="Day06\Tests\MapTests.cs" />
+    <Compile Include="Day06\Tests\TestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

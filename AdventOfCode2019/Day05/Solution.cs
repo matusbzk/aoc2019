@@ -4,6 +4,9 @@ using AdventOfCode2019.Common;
 
 namespace AdventOfCode2019.Day05
 {
+    /// <summary>
+    /// Solution for day 5
+    /// </summary>
     public class Solution : ISolution
     {
         private readonly IEnumerable<int> _input;
@@ -13,6 +16,7 @@ namespace AdventOfCode2019.Day05
             _input = InputLoader.LoadIntegersSeparatedByComma(5);
         }
 
+        /// <inheritdoc />
         public object Part1()
         {
             var test = new Test(_input, 1);
@@ -20,6 +24,7 @@ namespace AdventOfCode2019.Day05
             return test.Diagnostics;
         }
 
+        /// <inheritdoc />
         public object Part2()
         {
             var test = new Test(_input, 5);

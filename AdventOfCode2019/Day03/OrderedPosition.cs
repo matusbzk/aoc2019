@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AdventOfCode2019.Common.Geometry;
+﻿using AdventOfCode2019.Common.Geometry;
 
 namespace AdventOfCode2019.Day03
 {
@@ -14,17 +13,5 @@ namespace AdventOfCode2019.Day03
         {
             Order = order;
         }
-
-        private sealed class OrderEqualityComparer : IEqualityComparer<OrderedPosition>
-        {
-            public bool Equals(OrderedPosition x, OrderedPosition y) => x.X == y.X && x.Y == y.Y;
-
-            public int GetHashCode(OrderedPosition obj)
-            {
-                return obj.Order;
-            }
-        }
-
-        public static IEqualityComparer<OrderedPosition> OrderComparer { get; } = new OrderEqualityComparer();
     }
 }

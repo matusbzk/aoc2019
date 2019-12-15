@@ -3,6 +3,9 @@ using AdventOfCode2019.Common;
 
 namespace AdventOfCode2019.Day03
 {
+    /// <summary>
+    /// Solution for day 3
+    /// </summary>
     public class Solution : ISolution
     {
         private readonly Wires _wires;
@@ -10,7 +13,7 @@ namespace AdventOfCode2019.Day03
         public Solution()
         {
             var input = InputLoader.LoadLines(3).ToArray();
-            _wires = new Wires(new[] { new Wire(input[0]), new Wire(input[1]) });
+            _wires = new Wires(new Wire(input[0]), new Wire(input[1]));
         }
 
         /// <inheritdoc />

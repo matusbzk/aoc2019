@@ -19,11 +19,11 @@ namespace AdventOfCode2019.Day03.Tests
         }
 
         [Test]
-        public void GetPath_ReturnCorrectResult()
+        public void Path_ReturnCorrectResult()
         {
             var wire = new Wire("R8,U5,L5,D3");
 
-            var path = wire.GetPath().ToArray();
+            var path = wire.Path.ToArray();
 
             Assert.AreEqual(21, path.Length);
             Assert.IsTrue(path.Contains(new OrderedPosition(1, 0, 1)));

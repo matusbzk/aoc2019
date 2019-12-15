@@ -8,7 +8,7 @@ Current status (as of 15.12.2019):
 |------------|--------|--------|
 | **Day 01** | :star: | :star: |
 | **Day 02** | :star: | :star: |
-| **Day 03** | :star: |        |
+| **Day 03** | :star: | :star: |
 | **Day 04** |        |        |
 | **Day 05** |        |        |
 | **Day 06** |        |        |

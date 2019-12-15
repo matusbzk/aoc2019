@@ -35,6 +35,18 @@ namespace AdventOfCode2019.Common.Intcode
                 case Opcode.Output:
                     ParametersCount = 1;
                     break;
+                case Opcode.JumpIfTrue:
+                    ParametersCount = 2;
+                    break;
+                case Opcode.JumpIfFalse:
+                    ParametersCount = 2;
+                    break;
+                case Opcode.LessThan:
+                    ParametersCount = 3;
+                    break;
+                case Opcode.Equals:
+                    ParametersCount = 3;
+                    break;
                 case Opcode.Halt:
                     ParametersCount = 0;
                     break;

@@ -15,14 +15,16 @@ namespace AdventOfCode2019.Day05
 
         public object Part1()
         {
-            var test = new Test(_input);
+            var test = new Test(_input, 1);
             test.RunUntilHalt();
             return test.Diagnostics;
         }
 
         public object Part2()
         {
-            throw new NotImplementedException();
+            var test = new Test(_input, 5);
+            test.RunUntilHalt();
+            return test.Diagnostics;
         }
     }
 }

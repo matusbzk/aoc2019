@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonTests\Intcode\MockIntcodeProgram.cs" />
     <Compile Include="Common\InputLoader.cs" />
     <Compile Include="Common\Intcode\Instruction.cs" />
     <Compile Include="Common\Intcode\Parameter.cs" />

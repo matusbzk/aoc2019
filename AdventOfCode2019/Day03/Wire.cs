@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AdventOfCode2019.Common.Geometry;
 
 namespace AdventOfCode2019.Day03
 {
@@ -9,10 +8,43 @@ namespace AdventOfCode2019.Day03
     /// </summary>
     public class Wire
     {
+        private IEnumerable<OrderedPosition> _path;
+
         /// <summary>
         /// Instructions
         /// </summary>
         public IList<Instruction> Instructions { get; set; }
+
+        /// <summary>
+        /// Path of wire.
+        /// </summary>
+        public IEnumerable<OrderedPosition> Path
+        {
+            get
+            {
+                if (_path != null)
+                {
+                    return _path;
+                }
+                var currentPosition = new OrderedPosition();
+                var result = new List<OrderedPosition>();
+                foreach (var instruction in Instructions)
+                {
+                    var crossedPositions = instruction
+                        .Apply(new OrderedPosition(currentPosition.X, currentPosition.Y, currentPosition.Order))
+                        .ToArray();
+                    result.AddRange(crossedPositions);
+                    currentPosition = crossedPositions.Last();
+                }
+
+                _path = result.GroupBy(p => new {
+                    p.X,
+                    p.Y
+                }).Select(g => g.First());
+
+                return _path;
+            }
+        }
 
         public Wire(string instructionsStr)
         {
@@ -21,44 +53,6 @@ namespace AdventOfCode2019.Day03
             {
                 Instructions.Add(new Instruction(instructionStr));
             }
-        }
-
-        /// <summary>
-        /// Returns path of wire.
-        /// </summary>
-        /// <returns>Path of wire</returns>
-        public IEnumerable<OrderedPosition> GetPath()
-        {
-            var currentPosition = new OrderedPosition();
-            var result = new List<OrderedPosition>();
-            foreach (var instruction in Instructions)
-            {
-                var crossedPositions = instruction
-                    .Apply(new OrderedPosition(currentPosition.X, currentPosition.Y, currentPosition.Order))
-                    .ToArray();
-                result.AddRange(crossedPositions);
-                currentPosition = crossedPositions.Last();
-            }
-
-            return result.GroupBy(p => new {p.X, p.Y}).Select(g => g.First());
-        }
-
-        protected bool Equals(Wire other)
-        {
-            return Equals(Instructions, other.Instructions);
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((Wire) obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return (Instructions != null ? Instructions.GetHashCode() : 0);
         }
     }
 }

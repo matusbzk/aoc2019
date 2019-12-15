@@ -1,34 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AdventOfCode2019.Common.Geometry;
 
 namespace AdventOfCode2019.Day03
 {
     /// <summary>
     /// Collection of wires
     /// </summary>
-    /// <remarks>I expected part 2 to consist of more than two wires so I prepared in advance.</remarks>
     public class Wires
     {
         /// <summary>
-        /// Stores all wires and their paths
+        /// First wire
         /// </summary>
-        /// <remarks>This is so path is only computed once for each wire</remarks>
-        public Dictionary<Wire, IEnumerable<OrderedPosition>> WirePaths { get; set; }
+        public Wire Wire1 { get; set; }
 
-        public Wires(IEnumerable<Wire> wires)
+        /// <summary>
+        /// Second wire
+        /// </summary>
+        public Wire Wire2 { get; set; }
+
+        public Wires(Wire wire1, Wire wire2)
         {
-            if (wires == null)
-            {
-                throw new ArgumentNullException(nameof(wires));
-            }
-
-            WirePaths = new Dictionary<Wire, IEnumerable<OrderedPosition>>();
-            foreach (var wire in wires)
-            {
-                WirePaths.Add(wire, wire.GetPath());
-            }
+            Wire1 = wire1 ?? throw new ArgumentNullException(nameof(wire1));
+            Wire2 = wire2 ?? throw new ArgumentNullException(nameof(wire2));
         }
 
         /// <summary>
@@ -38,25 +32,10 @@ namespace AdventOfCode2019.Day03
         public IEnumerable<OrderedPosition> GetIntersections()
         {
             var result = new List<OrderedPosition>();
-            foreach (var wirePath1 in WirePaths)
-            {
-                foreach (var wirePath2 in WirePaths)
-                {
-                    if (!Equals(wirePath1.Key, wirePath2.Key))
-                    {
-                        var arr1 = wirePath1.Value;
-                        var arr2 = wirePath2.Value;
-                        arr1 = arr1.Where(p => arr2.Any(p2 => p.X == p2.X && p.Y == p2.Y)).ToArray();
-                        arr2 = arr2.Where(p => arr1.Any(p2 => p.X == p2.X && p.Y == p2.Y)).ToArray();
-                        var sth = arr1.GroupJoin(arr2, p => new {p.X, p.Y}, p => new {p.X, p.Y},
-                            (p, pe) => new OrderedPosition(p.X, p.Y,
-                                p.Order + pe.OrderBy(k => k.Order).First().Order)).ToArray();
-                        result.AddRange(sth);
-                    }
-                }
-            }
+            result.AddRange(Wire1.Path.Join(Wire2.Path, p => new {p.X, p.Y}, p => new {p.X, p.Y},
+                (p1, p2) => new OrderedPosition(p1.X, p1.Y, p1.Order + p2.Order)));
 
-            return result.GroupBy(p => new { p.X, p.Y }).Select(g => g.First());
+            return result;
         }
 
         /// <summary>

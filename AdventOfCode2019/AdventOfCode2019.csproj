@@ -64,6 +64,9 @@
     <Compile Include="Day03\Tests\WireTests.cs" />
     <Compile Include="Day03\Wire.cs" />
     <Compile Include="Day03\Wires.cs" />
+    <Compile Include="Day04\PasswordValidator.cs" />
+    <Compile Include="Day04\Solution.cs" />
+    <Compile Include="Day04\Tests\PasswordValidatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

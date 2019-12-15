@@ -1,7 +1,8 @@
 ﻿using System;
+using AdventOfCode2019.Common.Intcode;
 using NUnit.Framework;
 
-namespace AdventOfCode2019.Day02.Tests
+namespace AdventOfCode2019.CommonTests.Intcode
 {
     [TestFixture]
     public class IntcodeProgramTests
@@ -10,7 +11,7 @@ namespace AdventOfCode2019.Day02.Tests
         public void DoOpcode_OnHaltedProgram_ThrowsInvalidOperationException()
         {
             var program = new IntcodeProgram(new[] {99}) {IsHalted = true};
-            Assert.Throws<InvalidOperationException>(program.DoOpcode);
+            Assert.Throws<InvalidOperationException>(program.PerformInstruction);
         }
 
         [Test]
@@ -18,7 +19,7 @@ namespace AdventOfCode2019.Day02.Tests
         {
             var program = new IntcodeProgram(new[] {1, 9, 10, 3, 2, 3, 11, 0, 99, 30, 40, 50});
 
-            program.DoOpcode();
+            program.PerformInstruction();
 
             Assert.AreEqual("1,9,10,70,2,3,11,0,99,30,40,50", string.Join(",", program.Memory));
             Assert.AreEqual(4, program.Position);
@@ -30,7 +31,7 @@ namespace AdventOfCode2019.Day02.Tests
         {
             var program = new IntcodeProgram(new[] {1, 9, 10, 70, 2, 3, 11, 0, 99, 30, 40, 50}) {Position = 4};
 
-            program.DoOpcode();
+            program.PerformInstruction();
 
             Assert.AreEqual("3500,9,10,70,2,3,11,0,99,30,40,50", string.Join(",", program.Memory));
             Assert.AreEqual(8, program.Position);
@@ -42,7 +43,7 @@ namespace AdventOfCode2019.Day02.Tests
         {
             var program = new IntcodeProgram(new[] { 3500, 9, 10, 70, 2, 3, 11, 0, 99, 30, 40, 50 }) { Position = 8 };
 
-            program.DoOpcode();
+            program.PerformInstruction();
 
             Assert.IsTrue(program.IsHalted);
         }

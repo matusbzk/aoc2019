@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AdventOfCode2019.Common.Intcode;
 
 namespace AdventOfCode2019.Day02
 {

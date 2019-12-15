@@ -45,15 +45,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\InputLoader.cs" />
+    <Compile Include="Common\Intcode\Instruction.cs" />
+    <Compile Include="Common\Intcode\Parameter.cs" />
+    <Compile Include="Common\Intcode\ParameterMode.cs" />
     <Compile Include="Common\ISolution.cs" />
     <Compile Include="Day01\FuelRequirementCalculator.cs" />
     <Compile Include="Day01\Solution.cs" />
     <Compile Include="Day01\Tests\FuelRequirementCalculatorTests.cs" />
     <Compile Include="Day02\GravityAssistProgram.cs" />
-    <Compile Include="Day02\IntcodeProgram.cs" />
-    <Compile Include="Day02\Opcode.cs" />
+    <Compile Include="Common\Intcode\IntcodeProgram.cs" />
+    <Compile Include="Common\Intcode\Opcode.cs" />
     <Compile Include="Day02\Solution.cs" />
-    <Compile Include="Day02\Tests\IntcodeProgramTests.cs" />
+    <Compile Include="CommonTests\Intcode\IntcodeProgramTests.cs" />
     <Compile Include="Common\Geometry\Direction.cs" />
     <Compile Include="Day03\Instruction.cs" />
     <Compile Include="Common\Geometry\Position.cs" />
@@ -67,11 +70,15 @@
     <Compile Include="Day04\PasswordValidator.cs" />
     <Compile Include="Day04\Solution.cs" />
     <Compile Include="Day04\Tests\PasswordValidatorTests.cs" />
+    <Compile Include="Day05\Solution.cs" />
+    <Compile Include="Day05\Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Day02\Tests\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

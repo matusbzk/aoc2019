@@ -11,7 +11,7 @@ Current status (as of 15.12.2019):
 | **Day 03** | :star: | :star: |
 | **Day 04** | :star: | :star: |
 | **Day 05** | :star: | :star: |
-| **Day 06** |        |        |
+| **Day 06** | :star: | :star: |
 | **Day 07** |        |        |
 | **Day 08** |        |        |
 | **Day 09** |        |        |

@@ -1,6 +1,6 @@
 ﻿using System;
 using AdventOfCode2019.Common;
-using AdventOfCode2019.Day06;
+using AdventOfCode2019.Day07;
 
 namespace SolutionGetter
 {

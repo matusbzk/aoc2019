@@ -43,9 +43,22 @@ namespace AdventOfCode2019.Common.Intcode
         }
 
         /// <summary>
+        /// Run program until it produces output
+        /// </summary>
+        public virtual void RunUntilOutput()
+        {
+            Opcode opcode = PerformInstruction();
+            while (opcode != Opcode.Output && !IsHalted)
+            {
+                opcode = PerformInstruction();
+            }
+        }
+
+        /// <summary>
         /// Perform next instruction
         /// </summary>
-        public void PerformInstruction()
+        /// <returns>Opcode of instruction performed</returns>
+        public Opcode PerformInstruction()
         {
             if (IsHalted)
             {
@@ -59,7 +72,8 @@ namespace AdventOfCode2019.Common.Intcode
                 instruction.AddParameter(Memory[InstructionPointer], Memory[InstructionPointer + i + 1]);
             }
 
-            ProcessInstruction(instruction); 
+            ProcessInstruction(instruction);
+            return instruction.Opcode;
         }
 
         /// <summary>

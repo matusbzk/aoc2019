@@ -11,7 +11,7 @@ namespace AdventOfCode2019.CommonTests.Intcode
         public void DoOpcode_OnHaltedProgram_ThrowsInvalidOperationException()
         {
             var program = new IntcodeProgram(new[] {99}) {IsHalted = true};
-            Assert.Throws<InvalidOperationException>(program.PerformInstruction);
+            Assert.Throws<InvalidOperationException>(() => program.PerformInstruction());
         }
 
         [Test]

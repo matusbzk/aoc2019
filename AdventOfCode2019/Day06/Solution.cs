@@ -1,5 +1,4 @@
-﻿using System;
-using AdventOfCode2019.Common;
+﻿using AdventOfCode2019.Common;
 
 namespace AdventOfCode2019.Day06
 {

@@ -104,6 +104,10 @@
     <Compile Include="Day07\Solution.cs" />
     <Compile Include="Day07\Tests\AcsSimulatorTests.cs" />
     <Compile Include="Day07\Tests\AmplifierControllerSoftwareTests.cs" />
+    <Compile Include="Day08\Image.cs" />
+    <Compile Include="Day08\Layer.cs" />
+    <Compile Include="Day08\Solution.cs" />
+    <Compile Include="Day08\Tests\ImageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

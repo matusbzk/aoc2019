@@ -2,7 +2,7 @@
 
 My solution to [Advent of code 2019](https://adventofcode.com/2019/).
 
-Current status (as of 15.12.2019):
+Current status:
 
 |    Day     |        |        |
 |------------|--------|--------|

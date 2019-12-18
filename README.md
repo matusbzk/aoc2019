@@ -1,4 +1,4 @@
-`# Advent of code 2019
+# Advent of code 2019
 
 My solution to [Advent of code 2019](https://adventofcode.com/2019/).
 

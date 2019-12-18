@@ -9,11 +9,11 @@ namespace AdventOfCode2019.Day05
     /// </summary>
     public class Solution : ISolution
     {
-        private readonly IEnumerable<int> _input;
+        private readonly IEnumerable<long> _input;
 
         public Solution()
         {
-            _input = InputLoader.LoadIntegersSeparatedByComma(5);
+            _input = InputLoader.LoadLongIntegersSeparatedByComma(5);
         }
 
         /// <inheritdoc />

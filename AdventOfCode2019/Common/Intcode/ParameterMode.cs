@@ -13,6 +13,11 @@
         /// <summary>
         /// Number represents value itself.
         /// </summary>
-        Immediate = 1
+        Immediate = 1,
+
+        /// <summary>
+        /// Similar as position but position in memory is calculated from relative base
+        /// </summary>
+        Relative = 2
     }
 }

@@ -1,17 +1,14 @@
 ﻿using System.Collections.Generic;
 using AdventOfCode2019.Common.Intcode;
 
-namespace AdventOfCode2019.CommonTests.Intcode
+namespace AdventOfCode2019.Day09
 {
-    /// <summary>
-    /// Mock intcode program that always puts same value to input and stores last output
-    /// </summary>
-    public class MockIntcodeProgram : IntcodeProgram
+    public class Boost : IntcodeProgram
     {
         public long Input { get; set; }
-        public long Output { get; set; }
+        public long? Output { get; set; }
 
-        public MockIntcodeProgram(IEnumerable<long> integers, int input) : base(integers)
+        public Boost(IEnumerable<long> integers, long input) : base(integers)
         {
             Input = input;
         }

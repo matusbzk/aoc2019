@@ -8,11 +8,11 @@ namespace AdventOfCode2019.Day07
     /// </summary>
     public class Solution : ISolution
     {
-        private readonly IEnumerable<int> _input;
+        private readonly IEnumerable<long> _input;
 
         public Solution()
         {
-            _input = InputLoader.LoadIntegersSeparatedByComma(7);
+            _input = InputLoader.LoadLongIntegersSeparatedByComma(7);
         }
 
         /// <inheritdoc />

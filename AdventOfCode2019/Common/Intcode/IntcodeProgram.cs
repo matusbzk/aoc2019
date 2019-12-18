@@ -12,7 +12,7 @@ namespace AdventOfCode2019.Common.Intcode
         /// <summary>
         /// Memory of program.
         /// </summary>
-        public int[] Memory { get; set; }
+        public List<long> Memory { get; set; }
 
         /// <summary>
         /// Current position of instruction pointer.
@@ -24,11 +24,14 @@ namespace AdventOfCode2019.Common.Intcode
         /// </summary>
         public bool IsHalted { get; set; }
 
-        public IntcodeProgram(IEnumerable<int> integers)
+        /// <summary>
+        /// Relative base used for relative mode of instructions
+        /// </summary>
+        public int RelativeBase { get; set; }
+
+        public IntcodeProgram(IEnumerable<long> integers)
         {
-            Memory = integers.ToArray();
-            InstructionPointer = 0;
-            IsHalted = false;
+            Memory = integers.ToList();
         }
 
         /// <summary>
@@ -66,10 +69,11 @@ namespace AdventOfCode2019.Common.Intcode
             }
 
             var instruction = new Instruction();
-            instruction.AssignOpcode(Memory[InstructionPointer]);
+            instruction.AssignOpcode(Convert.ToInt32(SafeMemoryGet(InstructionPointer)));
             for (var i = 0; i < instruction.ParametersCount; i++)
             {
-                instruction.AddParameter(Memory[InstructionPointer], Memory[InstructionPointer + i + 1]);
+                instruction.AddParameter(Convert.ToInt32(SafeMemoryGet(InstructionPointer)),
+                    SafeMemoryGet(InstructionPointer + i + 1));
             }
 
             ProcessInstruction(instruction);
@@ -80,17 +84,17 @@ namespace AdventOfCode2019.Common.Intcode
         /// Gets data from input.
         /// </summary>
         /// <returns>Data from input</returns>
-        protected virtual int GetInput()
+        protected virtual long GetInput()
         {
             Console.Write("Enter input: ");
-            return Convert.ToInt32(Console.ReadLine());
+            return Convert.ToInt64(Console.ReadLine());
         }
 
         /// <summary>
         /// Outputs data.
         /// </summary>
         /// <param name="value">Data to output</param>
-        protected virtual void DoOutput(int value)
+        protected virtual void DoOutput(long value)
         {
             Console.WriteLine(value);
         }
@@ -131,6 +135,9 @@ namespace AdventOfCode2019.Common.Intcode
                 case Opcode.Equals:
                     ProcessEquals(instruction);
                     break;
+                case Opcode.AdjustRelativeBase:
+                    ProcessAdjustRelativeBase(instruction);
+                    break;
                 case Opcode.Halt:
                     instructionPointerModified = IsHalted = true;
                     break;
@@ -153,8 +160,8 @@ namespace AdventOfCode2019.Common.Intcode
                     nameof(instruction));
             }
 
-            Memory[instruction.Parameters[2].Value] = GetParameterValue(instruction.Parameters[0]) +
-                                                      GetParameterValue(instruction.Parameters[1]);
+            SafeAssign(GetParameterAddress(instruction.Parameters[2]),
+                GetParameterValue(instruction.Parameters[0]) + GetParameterValue(instruction.Parameters[1]));
         }
 
         private void ProcessMultiplication(Instruction instruction)
@@ -166,8 +173,8 @@ namespace AdventOfCode2019.Common.Intcode
                     nameof(instruction));
             }
 
-            Memory[instruction.Parameters[2].Value] = GetParameterValue(instruction.Parameters[0]) *
-                                                      GetParameterValue(instruction.Parameters[1]);
+            SafeAssign(GetParameterAddress(instruction.Parameters[2]),
+                GetParameterValue(instruction.Parameters[0]) * GetParameterValue(instruction.Parameters[1]));
         }
 
         private void ProcessInput(Instruction instruction)
@@ -179,7 +186,7 @@ namespace AdventOfCode2019.Common.Intcode
                     nameof(instruction));
             }
 
-            Memory[instruction.Parameters[0].Value] = GetInput();
+            SafeAssign(GetParameterAddress(instruction.Parameters[0]), GetInput());
         }
 
         private void ProcessOutput(Instruction instruction)
@@ -206,7 +213,7 @@ namespace AdventOfCode2019.Common.Intcode
 
             if (GetParameterValue(instruction.Parameters[0]) != 0)
             {
-                InstructionPointer = GetParameterValue(instruction.Parameters[1]);
+                InstructionPointer = Convert.ToInt32(GetParameterValue(instruction.Parameters[1]));
                 return true;
             }
 
@@ -225,7 +232,7 @@ namespace AdventOfCode2019.Common.Intcode
 
             if (GetParameterValue(instruction.Parameters[0]) == 0)
             {
-                InstructionPointer = GetParameterValue(instruction.Parameters[1]);
+                InstructionPointer = Convert.ToInt32(GetParameterValue(instruction.Parameters[1]));
                 return true;
             }
 
@@ -241,8 +248,8 @@ namespace AdventOfCode2019.Common.Intcode
                     nameof(instruction));
             }
 
-            Memory[instruction.Parameters[2].Value] =
-                GetParameterValue(instruction.Parameters[0]) < GetParameterValue(instruction.Parameters[1]) ? 1 : 0;
+            SafeAssign(GetParameterAddress(instruction.Parameters[2]),
+                GetParameterValue(instruction.Parameters[0]) < GetParameterValue(instruction.Parameters[1]) ? 1 : 0);
         }
 
         private void ProcessEquals(Instruction instruction)
@@ -254,21 +261,88 @@ namespace AdventOfCode2019.Common.Intcode
                     nameof(instruction));
             }
 
-            Memory[instruction.Parameters[2].Value] =
-                GetParameterValue(instruction.Parameters[0]) == GetParameterValue(instruction.Parameters[1]) ? 1 : 0;
+            SafeAssign(GetParameterAddress(instruction.Parameters[2]),
+                GetParameterValue(instruction.Parameters[0]) == GetParameterValue(instruction.Parameters[1]) ? 1 : 0);
         }
 
-        private int GetParameterValue(Parameter parameter)
+        private void ProcessAdjustRelativeBase(Instruction instruction)
+        {
+            if (instruction.Opcode != Opcode.AdjustRelativeBase)
+            {
+                throw new ArgumentException(
+                    "Tried to call ProcessAdjustRelativeBase() with instruction with opcode which is not adjust relative base",
+                    nameof(instruction));
+            }
+
+            RelativeBase += Convert.ToInt32(GetParameterValue(instruction.Parameters[0]));
+        }
+
+        private long GetParameterValue(Parameter parameter)
         {
             switch (parameter.Mode)
             {
                 case ParameterMode.Position:
-                    return Memory[parameter.Value];
+                    return SafeMemoryGet(Convert.ToInt32(parameter.Value));
                 case ParameterMode.Immediate:
                     return parameter.Value;
+                case ParameterMode.Relative:
+                    return SafeMemoryGet(Convert.ToInt32(RelativeBase + parameter.Value));
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        /// <summary>
+        /// Get number of address where this parameter refers to.
+        /// Does not work for immediate parameter mode.
+        /// </summary>
+        /// <param name="parameter">Parameter</param>
+        private int GetParameterAddress(Parameter parameter)
+        {
+            switch (parameter.Mode)
+            {
+                case ParameterMode.Position:
+                    return Convert.ToInt32(parameter.Value);
+                case ParameterMode.Relative:
+                    return Convert.ToInt32(RelativeBase + parameter.Value);
+                case ParameterMode.Immediate:
+                    throw new ArgumentException("Parameters that an instruction writes to cannot be in immediate mode",
+                        nameof(parameter));
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        /// <summary>
+        /// Safely gets value from memory.
+        /// If memory is not long enough, it allocks more.
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <returns>Value at given index</returns>
+        private long SafeMemoryGet(int index)
+        {
+            if (index >= Memory.Count)
+            {
+                Memory.AddRange(Enumerable.Repeat((long) 0, index - Memory.Count + 1));
+            }
+
+            return Memory[index];
+        }
+
+        /// <summary>
+        /// Safely assigns value to memory.
+        /// If memory is not long enough, it allocks more.
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <param name="value">Value</param>
+        private void SafeAssign(int index, long value)
+        {
+            if (index >= Memory.Count)
+            {
+                Memory.AddRange(Enumerable.Repeat((long) 0, index - Memory.Count + 1));
+            }
+
+            Memory[index] = value;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace AdventOfCode2019.Day02
     /// </summary>
     public class GravityAssistProgram : IntcodeProgram
     {
-        public GravityAssistProgram(IEnumerable<int> integers, int noun, int verb) : base(integers)
+        public GravityAssistProgram(IEnumerable<long> integers, int noun, int verb) : base(integers)
         {
             Memory[1] = noun;
             Memory[2] = verb;

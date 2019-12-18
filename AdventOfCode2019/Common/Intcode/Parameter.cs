@@ -8,7 +8,7 @@
         /// <summary>
         /// Value
         /// </summary>
-        public int Value { get; set; }
+        public long Value { get; set; }
 
         /// <summary>
         /// Mode of this parameter

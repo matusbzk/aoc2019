@@ -49,6 +49,14 @@ namespace AdventOfCode2019.Common
         public static IEnumerable<int> LoadIntegersSeparatedByComma(int day) =>
             LoadText(day).Split(',').Select(v => Convert.ToInt32(v));
 
+        /// <summary>
+        /// Loads long integers separated by comma
+        /// </summary>
+        /// <param name="day">Day</param>
+        /// <returns>Integers</returns>
+        public static IEnumerable<long> LoadLongIntegersSeparatedByComma(int day) =>
+            LoadText(day).Split(',').Select(v => Convert.ToInt64(v));
+
         private static string GetPath(int day) => $@"../../../AdventOfCode2019/Day{day:D2}/input.txt";
     }
 }

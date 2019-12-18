@@ -54,6 +54,11 @@
         Equals = 8,
 
         /// <summary>
+        /// Adjusts the relative base by the value of its only parameter
+        /// </summary>
+        AdjustRelativeBase = 9,
+
+        /// <summary>
         /// Halt.
         /// </summary>
         Halt = 99

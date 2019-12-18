@@ -8,23 +8,23 @@ namespace AdventOfCode2019.Day05
     /// </summary>
     public class Test : IntcodeProgram
     {
-        public int Input { get; set; }
-        public int Diagnostics { get; set; }
+        public long Input { get; set; }
+        public long Diagnostics { get; set; }
 
-        public Test(IEnumerable<int> integers, int input) : base(integers)
+        public Test(IEnumerable<long> integers, long input) : base(integers)
         {
             Input = input;
         }
 
         /// <inheritdoc />
         /// <remarks>Always provides same input</remarks>
-        protected override int GetInput()
+        protected override long GetInput()
         {
             return Input;
         }
 
         /// <inheritdoc />
-        protected override void DoOutput(int value)
+        protected override void DoOutput(long value)
         {
             Diagnostics = value;
         }

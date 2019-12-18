@@ -47,6 +47,9 @@ namespace AdventOfCode2019.Common.Intcode
                 case Opcode.Equals:
                     ParametersCount = 3;
                     break;
+                case Opcode.AdjustRelativeBase:
+                    ParametersCount = 1;
+                    break;
                 case Opcode.Halt:
                     ParametersCount = 0;
                     break;
@@ -60,7 +63,7 @@ namespace AdventOfCode2019.Common.Intcode
         /// </summary>
         /// <param name="memory">First value of instruction</param>
         /// <param name="parameter">Value of this parameter</param>
-        public void AddParameter(int memory, int parameter)
+        public void AddParameter(int memory, long parameter)
         {
             if (Parameters.Count > ParametersCount)
             {

@@ -13,11 +13,11 @@ namespace AdventOfCode2019.Day07
         /// Phase of the amplifier
         /// </summary>
         public int Phase { get; }
-        public int? Input { get; set; }
+        public long? Input { get; set; }
         public int InputsDone { get; private set; }
-        public int? Output { get; private set; }
+        public long? Output { get; private set; }
 
-        public Amplifier(IEnumerable<int> integers, int phase, int? input = null) : base(integers)
+        public Amplifier(IEnumerable<long> integers, int phase, int? input = null) : base(integers)
         {
             Phase = phase;
             Input = input;
@@ -31,7 +31,7 @@ namespace AdventOfCode2019.Day07
         }
 
         /// <inheritdoc />
-        protected override int GetInput()
+        protected override long GetInput()
         {
             InputsDone++;
             if (InputsDone == 1)
@@ -48,7 +48,7 @@ namespace AdventOfCode2019.Day07
         }
 
         /// <inheritdoc />
-        protected override void DoOutput(int value)
+        protected override void DoOutput(long value)
         {
             Output = value;
         }

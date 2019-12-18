@@ -11,14 +11,14 @@ namespace AdventOfCode2019.Day07
         /// <summary>
         /// Amplifiers code
         /// </summary>
-        public IEnumerable<int> Integers { get; set; }
+        public IEnumerable<long> Integers { get; set; }
 
         /// <summary>
         /// Which integers can be used as valid phases
         /// </summary>
         public IEnumerable<int> ValidPhases { get; }
 
-        public AcsSimulator(IEnumerable<int> integers, IEnumerable<int> validPhases)
+        public AcsSimulator(IEnumerable<long> integers, IEnumerable<int> validPhases)
         {
             Integers = integers;
             ValidPhases = validPhases;
@@ -28,9 +28,9 @@ namespace AdventOfCode2019.Day07
         /// What is the highest signal that can be sent to the thrusters?
         /// </summary>
         /// <returns>The highest signal that can be sent to the thrusters</returns>
-        public int GetMaxThrusterSignal()
+        public long GetMaxThrusterSignal()
         {
-            var max = int.MinValue;
+            var max = long.MinValue;
             foreach (var a in ValidPhases)
             foreach (var b in ValidPhases)
                 {
@@ -86,14 +86,14 @@ namespace AdventOfCode2019.Day07
         /// an argument and do all this stuff to reduce code duplication.
         /// I left it as you see it because it fascinates my how Linq could
         /// make this method shorter (and basically unreadable to human).</remarks>
-        public int GetMaxFeedbackLoopThrusterSignal() =>
-            ValidPhases.Aggregate(int.MinValue, (current3, a) => ValidPhases.Where(b => a != b)
+        public long GetMaxFeedbackLoopThrusterSignal() =>
+            ValidPhases.Aggregate(long.MinValue, (current3, a) => ValidPhases.Where(b => a != b)
                 .Aggregate(current3, (current2, b) => ValidPhases.Where(c => a != c && b != c)
                     .Aggregate(current2, (current1, c) => ValidPhases.Where(d => a != d && b != d && c != d)
                         .Aggregate(current1, (current, d) => (ValidPhases
                                 .Where(e => a != e && b != e && c != e && d != e)
                                 .Select(e => new AmplifierControllerSoftware(Integers, new[] {a, b, c, d, e}))
-                                .Select(acs => acs.GetFeedbackLoopThrusterSignal())).Concat(new[] {current})
+                                .Select(acs => acs.GetFeedbackLoopThrusterSignal())).Concat<long>(new[] {current})
                             .Max()))));
     }
 }

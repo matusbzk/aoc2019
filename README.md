@@ -1,4 +1,4 @@
-# Advent of code 2019
+`# Advent of code 2019
 
 My solution to [Advent of code 2019](https://adventofcode.com/2019/).
 
@@ -13,7 +13,7 @@ Current status (as of 15.12.2019):
 | **Day 05** | :star: | :star: |
 | **Day 06** | :star: | :star: |
 | **Day 07** | :star: | :star: |
-| **Day 08** |        |        |
+| **Day 08** | :star: | :star: |
 | **Day 09** |        |        |
 | **Day 10** |        |        |
 | **Day 11** |        |        |
@@ -22,8 +22,8 @@ Current status (as of 15.12.2019):
 | **Day 14** |        |        |
 | **Day 15** |        |        |
 | **Day 16** |        |        |
-|   Day 17   |        |        |
-|   Day 18   |        |        |
+| **Day 17** |        |        |
+| **Day 18** |        |        |
 |   Day 19   |        |        |
 |   Day 20   |        |        |
 |   Day 21   |        |        |

@@ -3,9 +3,7 @@ using AdventOfCode2019.Common;
 
 namespace AdventOfCode2019.Day07
 {
-    /// <summary>
-    /// Solution for day 7
-    /// </summary>
+    /// <inheritdoc />
     public class Solution : ISolution
     {
         private readonly IEnumerable<long> _input;

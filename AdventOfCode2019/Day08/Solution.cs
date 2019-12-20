@@ -1,12 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using AdventOfCode2019.Common;
 
 namespace AdventOfCode2019.Day08
 {
-    /// <summary>
-    /// Solution for day 8
-    /// </summary>
+    /// <inheritdoc />
     public class Solution : ISolution
     {
         private readonly Image _image;
@@ -25,9 +22,6 @@ namespace AdventOfCode2019.Day08
         }
 
         /// <inheritdoc />
-        public object Part2()
-        {
-            return $"\n{_image.GetVisibleImage().VisualRepresentation()}";
-        }
+        public object Part2() => $"\n{_image.GetVisibleImage().VisualRepresentation()}";
     }
 }

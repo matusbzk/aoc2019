@@ -2,23 +2,15 @@
 
 namespace AdventOfCode2019.Day06
 {
-    /// <summary>
-    /// Solution for day 6
-    /// </summary>
+    /// <inheritdoc />
     public class Solution : ISolution
     {
         private readonly Map _map = Day06InputLoader.LoadDay06Input();
 
         /// <inheritdoc />
-        public object Part1()
-        {
-            return _map.NumberOfOrbits();
-        }
+        public object Part1() => _map.NumberOfOrbits();
 
         /// <inheritdoc />
-        public object Part2()
-        {
-            return _map.OrbitalTransfersToSanta();
-        }
+        public object Part2() => _map.OrbitalTransfersToSanta();
     }
 }

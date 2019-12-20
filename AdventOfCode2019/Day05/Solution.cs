@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using AdventOfCode2019.Common;
 
 namespace AdventOfCode2019.Day05
 {
-    /// <summary>
-    /// Solution for day 5
-    /// </summary>
+    /// <inheritdoc />
     public class Solution : ISolution
     {
         private readonly IEnumerable<long> _input;

@@ -3,9 +3,7 @@ using AdventOfCode2019.Common;
 
 namespace AdventOfCode2019.Day03
 {
-    /// <summary>
-    /// Solution for day 3
-    /// </summary>
+    /// <inheritdoc />
     public class Solution : ISolution
     {
         private readonly Wires _wires;

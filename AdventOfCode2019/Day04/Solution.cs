@@ -3,24 +3,16 @@ using AdventOfCode2019.Common;
 
 namespace AdventOfCode2019.Day04
 {
-    /// <summary>
-    /// Solution for day 4
-    /// </summary>
+    /// <inheritdoc />
     public class Solution : ISolution
     {
-        private int _min = 231832;
-        private int _max = 767346;
+        private readonly int _min = 231832;
+        private readonly int _max = 767346;
 
         /// <inheritdoc />
-        public object Part1()
-        {
-            return PasswordValidator.GetAllValidPasswordsWithinRange(_min, _max).Count();
-        }
+        public object Part1() => PasswordValidator.GetAllValidPasswordsWithinRange(_min, _max).Count();
 
         /// <inheritdoc />
-        public object Part2()
-        {
-            return PasswordValidator.GetAllAdjustedValidPasswordsWithinRange(_min, _max).Count();
-        }
+        public object Part2() => PasswordValidator.GetAllAdjustedValidPasswordsWithinRange(_min, _max).Count();
     }
 }

@@ -3,9 +3,7 @@ using AdventOfCode2019.Common;
 
 namespace AdventOfCode2019.Day01
 {
-    /// <summary>
-    /// Solution for day 1
-    /// </summary>
+    /// <inheritdoc />
     public class Solution : ISolution
     {
         private readonly IEnumerable<int> _input;
@@ -16,15 +14,9 @@ namespace AdventOfCode2019.Day01
         }
 
         /// <inheritdoc />
-        public object Part1()
-        {
-            return FuelRequirementCalculator.GetFuelRequiredForAll(_input);
-        }
+        public object Part1() => FuelRequirementCalculator.GetFuelRequiredForAll(_input);
 
         /// <inheritdoc />
-        public object Part2()
-        {
-            return FuelRequirementCalculator.GetTotalFuelRequiredForAll(_input);
-        }
+        public object Part2() => FuelRequirementCalculator.GetTotalFuelRequiredForAll(_input);
     }
 }

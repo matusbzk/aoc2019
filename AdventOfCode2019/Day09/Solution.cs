@@ -3,6 +3,7 @@ using AdventOfCode2019.Common;
 
 namespace AdventOfCode2019.Day09
 {
+    /// <inheritdoc />
     public class Solution : ISolution
     {
         private readonly IEnumerable<long> _input;
@@ -11,6 +12,8 @@ namespace AdventOfCode2019.Day09
         {
             _input = InputLoader.LoadLongIntegersSeparatedByComma(9);
         }
+
+        /// <inheritdoc />
         public object Part1()
         {
             var boost = new Boost(_input, 1);
@@ -18,6 +21,7 @@ namespace AdventOfCode2019.Day09
             return boost.Output;
         }
 
+        /// <inheritdoc />
         public object Part2()
         {
             var boost = new Boost(_input, 2);

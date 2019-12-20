@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode2019.Common.Geometry
+﻿using System;
+
+namespace AdventOfCode2019.Common.Geometry
 {
     /// <summary>
     /// Represents position in 2D space
@@ -27,6 +29,29 @@
         /// <returns>Distance from central port</returns>
         public int GetDistance() => X + Y;
 
+        /// <summary>
+        /// Returns distance from another position
+        /// </summary>
+        /// /// <param name="other">Other position</param>
+        /// <returns>Distance from central port</returns>
+        public double GetDistance(Position other) => Math.Sqrt(Math.Pow(X - other.X, 2) + Math.Pow(Y - other.Y, 2));
+
+        /// <summary>
+        /// Returns angle between two positions 
+        /// </summary>
+        /// <param name="other">Other position</param>
+        /// <returns>Angle</returns>
+        public double? GetAngle(Position other)
+        {
+            var result = Math.Atan2(other.X - X, Y - other.Y) * 180 / Math.PI;
+            if (result < 0)
+            {
+                result += 360;
+            }
+
+            return result;
+        }
+
         public override string ToString() => $"({X},{Y})";
 
         protected bool Equals(Position other)
@@ -38,7 +63,7 @@
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((Position) obj);
         }
 

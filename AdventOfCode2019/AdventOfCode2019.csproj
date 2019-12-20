@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="CommonTests\Geometry\PositionTests.cs" />
     <Compile Include="CommonTests\Intcode\MockIntcodeProgram.cs" />
+    <Compile Include="Common\Geometry\Color.cs" />
     <Compile Include="Common\InputLoader.cs" />
     <Compile Include="Common\Intcode\Instruction.cs" />
     <Compile Include="Common\Intcode\Parameter.cs" />
@@ -121,6 +122,10 @@
     <Compile Include="Day10\Map.cs" />
     <Compile Include="Day10\Solution.cs" />
     <Compile Include="Day10\Tests\MapTests.cs" />
+    <Compile Include="Day11\EmergencyHullPaintingRobot.cs" />
+    <Compile Include="Day11\ShipPosition.cs" />
+    <Compile Include="Day11\Solution.cs" />
+    <Compile Include="Day11\Tests\EmergencyHullPaintingRobotTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

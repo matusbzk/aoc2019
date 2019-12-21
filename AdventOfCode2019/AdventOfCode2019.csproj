@@ -132,6 +132,10 @@
     <Compile Include="Day12\MoonSystem.cs" />
     <Compile Include="Day12\Solution.cs" />
     <Compile Include="Day12\Tests\MoonSystemTests.cs" />
+    <Compile Include="Day13\Arcade.cs" />
+    <Compile Include="Day13\Solution.cs" />
+    <Compile Include="Day13\Tests\ArcadeTests.cs" />
+    <Compile Include="Day13\Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

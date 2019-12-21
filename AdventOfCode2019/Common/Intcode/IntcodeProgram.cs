@@ -61,7 +61,7 @@ namespace AdventOfCode2019.Common.Intcode
         /// Perform next instruction
         /// </summary>
         /// <returns>Opcode of instruction performed</returns>
-        public Opcode PerformInstruction()
+        public virtual Opcode PerformInstruction()
         {
             if (IsHalted)
             {

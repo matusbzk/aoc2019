@@ -1,6 +1,6 @@
 ﻿using System;
 using AdventOfCode2019.Common;
-using AdventOfCode2019.Day11;
+using AdventOfCode2019.Day12;
 
 namespace SolutionGetter
 {
@@ -10,7 +10,7 @@ namespace SolutionGetter
         {
             ISolution solution = new Solution();
             Console.WriteLine($"Part1: {solution.Part1()}");
-            Console.WriteLine($"Part2: {solution.Part2()}");
+            //Console.WriteLine($"Part2: {solution.Part2()}");
             Console.ReadKey();
         }
     }

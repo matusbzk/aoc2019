@@ -89,5 +89,38 @@ namespace AdventOfCode2019.Day12.Tests
 
             Assert.AreEqual(179, actualResult);
         }
+
+        [Test]
+        public void SimulateUntilPreviousStateEncounter_OnSimpleExample_PerformsCorrectNumberOfSteps()
+        {
+            var moonSystem = new MoonSystem(new[]
+            {
+                new Moon(new Position3D(-1, 0, 2), new Position3D()),
+                new Moon(new Position3D(2, -10, -7), new Position3D()),
+                new Moon(new Position3D(4, -8, 8), new Position3D()),
+                new Moon(new Position3D(3, 5, -1), new Position3D())
+            });
+
+            moonSystem.SimulateUntilPreviousStateEncounter();
+
+            Assert.AreEqual(2772, moonSystem.StepsPerformed);
+        }
+
+        /// <remarks>Program is not effective enough</remarks>
+        [Test]
+        public void SimulateUntilPreviousStateEncounter_OnLongerExample_PerformsCorrectNumberOfSteps()
+        {
+            var moonSystem = new MoonSystem(new[]
+            {
+                new Moon(new Position3D(-8, -10, 0), new Position3D()),
+                new Moon(new Position3D(5, 5, 10), new Position3D()),
+                new Moon(new Position3D(2, -7, 3), new Position3D()),
+                new Moon(new Position3D(9, -8, -3), new Position3D())
+            });
+
+            moonSystem.SimulateUntilPreviousStateEncounter();
+
+            Assert.AreEqual(4686774924, moonSystem.StepsPerformed);
+        }
     }
 }

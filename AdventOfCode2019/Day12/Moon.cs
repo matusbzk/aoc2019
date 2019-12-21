@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AdventOfCode2019.Common.Geometry;
 
 namespace AdventOfCode2019.Day12
@@ -32,6 +28,10 @@ namespace AdventOfCode2019.Day12
         /// Returns total energy of the moon
         /// </summary>
         public int GetTotalEnergy() => GetPotentialEnergy() * GetKineticEnergy();
+
+        /// <inheritdoc />
+        public override string ToString() =>
+            $"pos=<x={Position.X}, y={Position.Y}, z={Position.Z}>, vel=<x={Velocity.X}, y={Velocity.Y}, z={Velocity.Z}>";
 
         private int GetPotentialEnergy() => Math.Abs(Position.X) + Math.Abs(Position.Y) + Math.Abs(Position.Z);
 

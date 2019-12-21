@@ -3,9 +3,25 @@ using System.Linq;
 
 namespace AdventOfCode2019.Day12
 {
+    /// <summary>
+    /// Represents system of moons
+    /// </summary>
     public class MoonSystem
     {
+        /// <summary>
+        /// List of moons in the system
+        /// </summary>
         public IList<Moon> Moons { get; set; }
+
+        /// <summary>
+        /// Number of steps performed since the beginning of the system
+        /// </summary>
+        public int StepsPerformed { get; set; }
+
+        /// <summary>
+        /// History of the system
+        /// </summary>
+        public IList<string> History { get; set; } = new List<string>();
 
         public MoonSystem(IEnumerable<Moon> moons)
         {
@@ -19,8 +35,21 @@ namespace AdventOfCode2019.Day12
         {
             for (var i = 0; i < count; i++)
             {
+                History.Add(ToString());
+                StepsPerformed++;
                 ApplyGravity();
                 ApplyVelocity();
+            }
+        }
+
+        /// <summary>
+        /// Performs time steps until system encounter a state it has previously encountered
+        /// </summary>
+        public void SimulateUntilPreviousStateEncounter()
+        {
+            while (!History.Contains(ToString()))
+            {
+                PerformTimeStep();
             }
         }
 
@@ -28,6 +57,9 @@ namespace AdventOfCode2019.Day12
         /// Returns total energy of the system
         /// </summary>
         public int GetTotalEnergy() => Moons.Select(m => m.GetTotalEnergy()).Sum();
+
+        /// <inheritdoc />
+        public override string ToString() => string.Join("\n", Moons.Select(m => m.ToString()));
 
         /// <summary>
         /// Applies gravity.

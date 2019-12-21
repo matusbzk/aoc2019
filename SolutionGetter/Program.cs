@@ -10,7 +10,7 @@ namespace SolutionGetter
         {
             ISolution solution = new Solution();
             Console.WriteLine($"Part1: {solution.Part1()}");
-            //Console.WriteLine($"Part2: {solution.Part2()}");
+            Console.WriteLine($"Part2: {solution.Part2()}");
             Console.ReadKey();
         }
     }

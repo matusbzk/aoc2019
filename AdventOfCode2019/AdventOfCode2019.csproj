@@ -136,6 +136,13 @@
     <Compile Include="Day13\Solution.cs" />
     <Compile Include="Day13\Tests\ArcadeTests.cs" />
     <Compile Include="Day13\Tile.cs" />
+    <Compile Include="Day14\Chemical.cs" />
+    <Compile Include="Day14\Ingredient.cs" />
+    <Compile Include="Day14\Nanofactory.cs" />
+    <Compile Include="Day14\Parser.cs" />
+    <Compile Include="Day14\Reaction.cs" />
+    <Compile Include="Day14\Solution.cs" />
+    <Compile Include="Day14\Tests\NanofactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

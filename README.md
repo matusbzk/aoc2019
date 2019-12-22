@@ -18,7 +18,7 @@ Current status:
 | **Day 10** | :star: | :star: |
 | **Day 11** | :star: | :star: |
 | **Day 12** | :star: |        |
-| **Day 13** |        |        |
+| **Day 13** | :star: | :star: |
 | **Day 14** |        |        |
 | **Day 15** |        |        |
 | **Day 16** |        |        |
@@ -26,7 +26,7 @@ Current status:
 | **Day 18** |        |        |
 | **Day 19** |        |        |
 | **Day 20** |        |        |
-|   Day 21   |        |        |
+| **Day 21** |        |        |
 |   Day 22   |        |        |
 |   Day 23   |        |        |
 |   Day 24   |        |        |

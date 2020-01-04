@@ -68,6 +68,8 @@
   <ItemGroup>
     <Compile Include="CommonTests\Geometry\PositionTests.cs" />
     <Compile Include="CommonTests\Intcode\MockIntcodeProgram.cs" />
+    <Compile Include="Common\Geometry\CardinalDirection.cs" />
+    <Compile Include="Common\Geometry\CardinalDirectionExtension.cs" />
     <Compile Include="Common\Geometry\Color.cs" />
     <Compile Include="Common\Geometry\Position3D.cs" />
     <Compile Include="Common\InputLoader.cs" />
@@ -75,8 +77,12 @@
     <Compile Include="Common\Intcode\Parameter.cs" />
     <Compile Include="Common\Intcode\ParameterMode.cs" />
     <Compile Include="Common\ISolution.cs" />
+    <Compile Include="Common\Structures\NeighborsListGraph.cs" />
+    <Compile Include="Common\Structures\IGraph.cs" />
+    <Compile Include="Common\Structures\NeighborsListGraphVertex.cs" />
     <Compile Include="Common\Structures\RootedForest.cs" />
     <Compile Include="Common\Structures\RootedForestObject.cs" />
+    <Compile Include="Common\VariousExtensions.cs" />
     <Compile Include="Day01\FuelRequirementCalculator.cs" />
     <Compile Include="Day01\Solution.cs" />
     <Compile Include="Day01\Tests\FuelRequirementCalculatorTests.cs" />
@@ -143,6 +149,14 @@
     <Compile Include="Day14\Reaction.cs" />
     <Compile Include="Day14\Solution.cs" />
     <Compile Include="Day14\Tests\NanofactoryTests.cs" />
+    <Compile Include="Day15\DroidStatusCode.cs" />
+    <Compile Include="Day15\Map.cs" />
+    <Compile Include="Day15\RepairDroid.cs" />
+    <Compile Include="Day15\Solution.cs" />
+    <Compile Include="Day15\Tests\RepairDroidTests.cs" />
+    <Compile Include="Day15\Tile.cs" />
+    <Compile Include="Day15\TileInfo.cs" />
+    <Compile Include="Day15\TileType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

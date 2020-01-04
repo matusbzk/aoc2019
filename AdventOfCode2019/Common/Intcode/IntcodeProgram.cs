@@ -50,7 +50,7 @@ namespace AdventOfCode2019.Common.Intcode
         /// </summary>
         public virtual void RunUntilOutput()
         {
-            Opcode opcode = PerformInstruction();
+            var opcode = PerformInstruction();
             while (opcode != Opcode.Output && !IsHalted)
             {
                 opcode = PerformInstruction();
@@ -94,10 +94,7 @@ namespace AdventOfCode2019.Common.Intcode
         /// Outputs data.
         /// </summary>
         /// <param name="value">Data to output</param>
-        protected virtual void DoOutput(long value)
-        {
-            Console.WriteLine(value);
-        }
+        protected virtual void DoOutput(long value) => Console.WriteLine(value);
 
         private void ProcessInstruction(Instruction instruction)
         {
@@ -108,7 +105,7 @@ namespace AdventOfCode2019.Common.Intcode
                     nameof(instruction));
             }
 
-            bool instructionPointerModified = false;
+            var instructionPointerModified = false;
             switch (instruction.Opcode)
             {
                 case Opcode.Addition:
@@ -279,17 +276,13 @@ namespace AdventOfCode2019.Common.Intcode
 
         private long GetParameterValue(Parameter parameter)
         {
-            switch (parameter.Mode)
+            return parameter.Mode switch
             {
-                case ParameterMode.Position:
-                    return SafeMemoryGet(Convert.ToInt32(parameter.Value));
-                case ParameterMode.Immediate:
-                    return parameter.Value;
-                case ParameterMode.Relative:
-                    return SafeMemoryGet(Convert.ToInt32(RelativeBase + parameter.Value));
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+                ParameterMode.Position => SafeMemoryGet(Convert.ToInt32(parameter.Value)),
+                ParameterMode.Immediate => parameter.Value,
+                ParameterMode.Relative => SafeMemoryGet(Convert.ToInt32(RelativeBase + parameter.Value)),
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
 
         /// <summary>
@@ -299,18 +292,14 @@ namespace AdventOfCode2019.Common.Intcode
         /// <param name="parameter">Parameter</param>
         private int GetParameterAddress(Parameter parameter)
         {
-            switch (parameter.Mode)
+            return parameter.Mode switch
             {
-                case ParameterMode.Position:
-                    return Convert.ToInt32(parameter.Value);
-                case ParameterMode.Relative:
-                    return Convert.ToInt32(RelativeBase + parameter.Value);
-                case ParameterMode.Immediate:
-                    throw new ArgumentException("Parameters that an instruction writes to cannot be in immediate mode",
-                        nameof(parameter));
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+                ParameterMode.Position => Convert.ToInt32(parameter.Value),
+                ParameterMode.Relative => Convert.ToInt32(RelativeBase + parameter.Value),
+                ParameterMode.Immediate => throw new ArgumentException(
+                    "Parameters that an instruction writes to cannot be in immediate mode", nameof(parameter)),
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
 
         /// <summary>

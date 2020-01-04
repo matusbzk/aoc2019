@@ -19,7 +19,7 @@ namespace AdventOfCode2019.Day10
         /// <summary>
         /// Asteroid on which monitoring station was built
         /// </summary>
-        public Asteroid MonitoringStation => _monitoringStation ?? (_monitoringStation = GetBestAsteroid());
+        public Asteroid MonitoringStation => _monitoringStation ??= GetBestAsteroid();
 
         public Map(IEnumerable<string> input)
         {

@@ -228,17 +228,13 @@ namespace AdventOfCode2019.Day15
                 return 'D';
             }
 
-            switch (tile.Vertex.Type)
+            return tile.Vertex.Type switch
             {
-                case TileType.Empty:
-                    return '.';
-                case TileType.Wall:
-                    return '#';
-                case TileType.OxygenSystem:
-                    return 'O';
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+                TileType.Empty => '.',
+                TileType.Wall => '#',
+                TileType.OxygenSystem => 'O',
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
     }
 }

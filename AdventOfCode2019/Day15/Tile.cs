@@ -46,27 +46,18 @@ namespace AdventOfCode2019.Day15
 
         public Tile Neighbor(CardinalDirection direction)
         {
-            switch (direction)
+            return direction switch
             {
-                case CardinalDirection.North:
-                    return North ?? (North =
-                               new Tile(new TileInfo(new Position(Vertex.Position.X, Vertex.Position.Y + 1)))
-                                   {South = this});
-                case CardinalDirection.South:
-                    return South ?? (South =
-                               new Tile(new TileInfo(new Position(Vertex.Position.X, Vertex.Position.Y - 1)))
-                                   {North = this});
-                case CardinalDirection.West:
-                    return West ?? (West =
-                               new Tile(new TileInfo(new Position(Vertex.Position.X - 1, Vertex.Position.Y)))
-                                   {East = this});
-                case CardinalDirection.East:
-                    return East ?? (East =
-                               new Tile(new TileInfo(new Position(Vertex.Position.X + 1, Vertex.Position.Y)))
-                                   {West = this});
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
-            }
+                CardinalDirection.North => (North ??= new Tile(new TileInfo(new Position(Vertex.Position.X,
+                    Vertex.Position.Y + 1))) {South = this}),
+                CardinalDirection.South => (South ??= new Tile(new TileInfo(new Position(Vertex.Position.X,
+                    Vertex.Position.Y - 1))) {North = this}),
+                CardinalDirection.West => (West ??= new Tile(new TileInfo(new Position(Vertex.Position.X - 1,
+                    Vertex.Position.Y))) {East = this}),
+                CardinalDirection.East => (East ??= new Tile(new TileInfo(new Position(Vertex.Position.X + 1,
+                    Vertex.Position.Y))) {West = this}),
+                _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
+            };
         }
 
         /// <summary>

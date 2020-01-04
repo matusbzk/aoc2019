@@ -29,12 +29,8 @@ namespace AdventOfCode2019.Day06
             }
 
             result += $"{Name}\n";
-            foreach (var child in Children)
-            {
-                result += ((Object) child).Stringified(level + 1);
-            }
 
-            return result;
+            return Children.Aggregate(result, (current, child) => current + ((Object) child).Stringified(level + 1));
         }
     }
 }

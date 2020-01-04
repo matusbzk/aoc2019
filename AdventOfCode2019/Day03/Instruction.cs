@@ -21,23 +21,14 @@ namespace AdventOfCode2019.Day03
 
         public Instruction(string instructionStr)
         {
-            switch (instructionStr[0])
+            Direction = instructionStr[0] switch
             {
-                case 'U':
-                    Direction = Direction.Up;
-                    break;
-                case 'D':
-                    Direction = Direction.Down;
-                    break;
-                case 'L':
-                    Direction = Direction.Left;
-                    break;
-                case 'R':
-                    Direction = Direction.Right;
-                    break;
-                default:
-                    throw new ArgumentException($"Cannot get direction from string '{instructionStr}'");
-            }
+                'U' => Direction.Up,
+                'D' => Direction.Down,
+                'L' => Direction.Left,
+                'R' => Direction.Right,
+                _ => throw new ArgumentException($"Cannot get direction from string '{instructionStr}'")
+            };
 
             Distance = Convert.ToInt32(instructionStr.Substring(1));
         }
@@ -51,24 +42,14 @@ namespace AdventOfCode2019.Day03
         {
             var result = new List<OrderedPosition>();
 
-            Action action;
-            switch (Direction)
+            var action = Direction switch
             {
-                case Direction.Up:
-                    action = () => position.Y++;
-                    break;
-                case Direction.Down:
-                    action = () => position.Y--;
-                    break;
-                case Direction.Right:
-                    action = () => position.X++;
-                    break;
-                case Direction.Left:
-                    action = () => position.X--;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(Direction));
-            }
+                Direction.Up => (Action) (() => position.Y++),
+                Direction.Down => (() => position.Y--),
+                Direction.Right => (() => position.X++),
+                Direction.Left => (() => position.X--),
+                _ => throw new ArgumentOutOfRangeException(nameof(Direction))
+            };
             for (var i = 0; i < Distance; i++)
             {
                 action.Invoke();

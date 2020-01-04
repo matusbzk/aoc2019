@@ -39,7 +39,9 @@ namespace AdventOfCode2019.Common.Structures
                     distance);
             }
 
-            var result = Neighbors.Select(v => v.ClosestVertexWhichInternal(predicate, distance + 1)).MinBy(t => t.Item2);
+            var result = Neighbors
+                .Select(v => v.ClosestVertexWhichInternal(predicate, distance + 1))
+                .MinBy(t => t.Item2);
             return new Tuple<IEnumerable<NeighborsListGraphVertex<TVertex>>, int>(result.SelectMany(t => t.Item1),
                 result.First().Item2);
         }

@@ -18,41 +18,20 @@ namespace AdventOfCode2019.Common.Intcode
         public void AssignOpcode(int memory)
         {
             Opcode = (Opcode)(memory % 100);
-            switch (Opcode)
+            ParametersCount = Opcode switch
             {
-                case Opcode.Addition:
-                    ParametersCount = 3;
-                    break;
-                case Opcode.Multiplication:
-                    ParametersCount = 3;
-                    break;
-                case Opcode.Input:
-                    ParametersCount = 1;
-                    break;
-                case Opcode.Output:
-                    ParametersCount = 1;
-                    break;
-                case Opcode.JumpIfTrue:
-                    ParametersCount = 2;
-                    break;
-                case Opcode.JumpIfFalse:
-                    ParametersCount = 2;
-                    break;
-                case Opcode.LessThan:
-                    ParametersCount = 3;
-                    break;
-                case Opcode.Equals:
-                    ParametersCount = 3;
-                    break;
-                case Opcode.AdjustRelativeBase:
-                    ParametersCount = 1;
-                    break;
-                case Opcode.Halt:
-                    ParametersCount = 0;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(Opcode));
-            }
+                Opcode.Addition => 3,
+                Opcode.Multiplication => 3,
+                Opcode.Input => 1,
+                Opcode.Output => 1,
+                Opcode.JumpIfTrue => 2,
+                Opcode.JumpIfFalse => 2,
+                Opcode.LessThan => 3,
+                Opcode.Equals => 3,
+                Opcode.AdjustRelativeBase => 1,
+                Opcode.Halt => 0,
+                _ => throw new ArgumentOutOfRangeException(nameof(Opcode))
+            };
         }
 
         /// <summary>

@@ -88,49 +88,26 @@ namespace AdventOfCode2019.Day11
             }
             else
             {
-                switch ((Color) value)
+                Direction = (Color) value switch
                 {
-                    case Color.Black:
-                        switch (Direction)
-                        {
-                            case Direction.Up:
-                                Direction = Direction.Left;
-                                break;
-                            case Direction.Down:
-                                Direction = Direction.Right;
-                                break;
-                            case Direction.Left:
-                                Direction = Direction.Down;
-                                break;
-                            case Direction.Right:
-                                Direction = Direction.Up;
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException(nameof(Direction));
-                        }
-                        break;
-                    case Color.White:
-                        switch (Direction)
-                        {
-                            case Direction.Up:
-                                Direction = Direction.Right;
-                                break;
-                            case Direction.Down:
-                                Direction = Direction.Left;
-                                break;
-                            case Direction.Left:
-                                Direction = Direction.Up;
-                                break;
-                            case Direction.Right:
-                                Direction = Direction.Down;
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException(nameof(Direction));
-                        }
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(value));
-                }
+                    Color.Black => (Direction switch
+                    {
+                        Direction.Up => Direction.Left,
+                        Direction.Down => Direction.Right,
+                        Direction.Left => Direction.Down,
+                        Direction.Right => Direction.Up,
+                        _ => throw new ArgumentOutOfRangeException(nameof(Direction))
+                    }),
+                    Color.White => (Direction switch
+                    {
+                        Direction.Up => Direction.Right,
+                        Direction.Down => Direction.Left,
+                        Direction.Left => Direction.Up,
+                        Direction.Right => Direction.Down,
+                        _ => throw new ArgumentOutOfRangeException(nameof(Direction))
+                    }),
+                    _ => throw new ArgumentOutOfRangeException(nameof(value))
+                };
                 MoveRobot();
             }
 
@@ -139,24 +116,14 @@ namespace AdventOfCode2019.Day11
 
         private void MoveRobot()
         {
-            ShipPosition newPosition;
-            switch (Direction)
+            var newPosition = Direction switch
             {
-                case Direction.Up:
-                    newPosition = new ShipPosition(Position.X, Position.Y - 1);
-                    break;
-                case Direction.Down:
-                    newPosition = new ShipPosition(Position.X, Position.Y + 1);
-                    break;
-                case Direction.Left:
-                    newPosition = new ShipPosition(Position.X - 1, Position.Y);
-                    break;
-                case Direction.Right:
-                    newPosition = new ShipPosition(Position.X + 1, Position.Y);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+                Direction.Up => new ShipPosition(Position.X, Position.Y - 1),
+                Direction.Down => new ShipPosition(Position.X, Position.Y + 1),
+                Direction.Left => new ShipPosition(Position.X - 1, Position.Y),
+                Direction.Right => new ShipPosition(Position.X + 1, Position.Y),
+                _ => throw new ArgumentOutOfRangeException()
+            };
 
             if (!Map.Any(p => p.X == newPosition.X && p.Y == newPosition.Y))
             {

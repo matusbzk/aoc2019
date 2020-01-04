@@ -33,28 +33,28 @@ namespace AdventOfCode2019.Day07
             var max = long.MinValue;
             foreach (var a in ValidPhases)
             foreach (var b in ValidPhases)
-                {
+            {
                 if (a == b)
                 {
                     continue;
                 }
 
                 foreach (var c in ValidPhases)
-                    {
+                {
                     if (a == c || b == c)
                     {
                         continue;
                     }
 
                     foreach (var d in ValidPhases)
-                        {
+                    {
                         if (a == d || b == d || c == d)
                         {
                             continue;
                         }
 
                         foreach (var e in ValidPhases)
-                            {
+                        {
                             if (a == e || b == e || c == e || d == e)
                             {
                                 continue;

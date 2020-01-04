@@ -37,13 +37,14 @@ namespace AdventOfCode2019.Day06
                     objects.Add(orbiting);
                 }
 
-                if (orbitingName == "YOU")
+                switch (orbitingName)
                 {
-                    result.You = orbiting;
-                }
-                if (orbitingName == "SAN")
-                {
-                    result.Santa = orbiting;
+                    case "YOU":
+                        result.You = orbiting;
+                        break;
+                    case "SAN":
+                        result.Santa = orbiting;
+                        break;
                 }
 
                 orbiting.Parent = orbited;

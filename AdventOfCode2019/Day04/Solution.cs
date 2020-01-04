@@ -6,13 +6,13 @@ namespace AdventOfCode2019.Day04
     /// <inheritdoc />
     public class Solution : ISolution
     {
-        private readonly int _min = 231832;
-        private readonly int _max = 767346;
+        private const int Min = 231832;
+        private const int Max = 767346;
 
         /// <inheritdoc />
-        public object Part1() => PasswordValidator.GetAllValidPasswordsWithinRange(_min, _max).Count();
+        public object Part1() => PasswordValidator.GetAllValidPasswordsWithinRange(Min, Max).Count();
 
         /// <inheritdoc />
-        public object Part2() => PasswordValidator.GetAllAdjustedValidPasswordsWithinRange(_min, _max).Count();
+        public object Part2() => PasswordValidator.GetAllAdjustedValidPasswordsWithinRange(Min, Max).Count();
     }
 }

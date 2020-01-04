@@ -15,7 +15,7 @@ namespace AdventOfCode2019.Day04
         /// <returns>All valid passwords in given range</returns>
         public static IEnumerable<int> GetAllValidPasswordsWithinRange(int min, int max)
         {
-            for (int i = min; i <= max; i++)
+            for (var i = min; i <= max; i++)
             {
                 if (MeetsCriteria(i, min, max))
                 {
@@ -32,7 +32,7 @@ namespace AdventOfCode2019.Day04
         /// <returns>All valid passwords in given range</returns>
         public static IEnumerable<int> GetAllAdjustedValidPasswordsWithinRange(int min, int max)
         {
-            for (int i = min; i <= max; i++)
+            for (var i = min; i <= max; i++)
             {
                 if (MeetsAdjustedCriteria(i, min, max))
                 {

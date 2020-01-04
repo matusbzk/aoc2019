@@ -9,7 +9,7 @@ namespace AdventOfCode2019.Day03.Tests
         [TestCase("R8,U5,L5,D3", "U7,R6,D4,L4")]
         public void GetIntersections_WithTwoWires_ReturnsCorrectResult(string path1, string path2)
         {
-            Wires wires = new Wires(new Wire(path1), new Wire(path2));
+            var wires = new Wires(new Wire(path1), new Wire(path2));
 
             var intersections = wires.GetIntersections().ToArray();
 
@@ -23,7 +23,7 @@ namespace AdventOfCode2019.Day03.Tests
         [TestCase("R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51", "U98,R91,D20,R16,D67,R40,U7,R15,U6,R7", 135)]
         public void GetClosestIntersection_WithTwoWires_ReturnsCorrectResult(string path1, string path2, int expectedDistance)
         {
-            Wires wires = new Wires(new Wire(path1), new Wire(path2));
+            var wires = new Wires(new Wire(path1), new Wire(path2));
 
             var closestIntersection = wires.GetClosestIntersection();
 
@@ -35,7 +35,7 @@ namespace AdventOfCode2019.Day03.Tests
         [TestCase("R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51", "U98,R91,D20,R16,D67,R40,U7,R15,U6,R7", 410)]
         public void GetFastestIntersection_WithTwoWires_ReturnsCorrectResult(string path1, string path2, int expectedDistance)
         {
-            Wires wires = new Wires(new Wire(path1), new Wire(path2));
+            var wires = new Wires(new Wire(path1), new Wire(path2));
 
             var fastestIntersection = wires.GetFastestIntersection();
 

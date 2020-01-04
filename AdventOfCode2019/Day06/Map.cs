@@ -21,15 +21,6 @@ namespace AdventOfCode2019.Day06
         /// Returns forest in string form
         /// </summary>
         /// <returns></returns>
-        public string Stringified()
-        {
-            var result = "";
-            foreach (var root in Roots)
-            {
-                result += root.Stringified();
-            }
-
-            return result;
-        }
+        public string Stringified() => Roots.Aggregate("", (current, root) => current + root.Stringified());
     }
 }

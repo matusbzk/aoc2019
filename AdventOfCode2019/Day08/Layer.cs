@@ -38,17 +38,13 @@ namespace AdventOfCode2019.Day08
 
         private char GetVisualRepresentationOfPixel(int pixel)
         {
-            switch (pixel)
+            return pixel switch
             {
-                case 0:
-                    return '.';
-                case 1:
-                    return '#';
-                case 2:
-                    return ' ';
-                default:
-                    throw new ArgumentException($"Invalid value of pixel: {pixel}", nameof(pixel));
-            }
+                0 => '.',
+                1 => '#',
+                2 => ' ',
+                _ => throw new ArgumentException($"Invalid value of pixel: {pixel}", nameof(pixel))
+            };
         }
     }
 }
